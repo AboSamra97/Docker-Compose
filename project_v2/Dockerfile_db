@@ -1,0 +1,17 @@
+# Use a base image with Python 3
+FROM python:3
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the database file into the container
+COPY database.db /app/database.db
+
+# Install Flask, a lightweight Python web framework
+RUN pip install flask
+
+# Copy the Python script to serve the SQLite database over HTTP
+COPY serve_database.py /app/serve_database.py
+
+# Specify the command to run when the container starts
+CMD ["python", "/app/serve_database.py"]

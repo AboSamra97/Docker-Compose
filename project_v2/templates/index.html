@@ -1,0 +1,70 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <link rel="stylesheet" href="/static/styles1.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <h1>Student Data</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Student ID</th>
+            <th>GPA</th>
+            <th>Action</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="student_id" value="{{ student[2] }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/insert_form">Insert Data</a>
+
+    <!-- Script to handle deletion action -->
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+                var studentId = this.querySelector('[name="student_id"]').value;
+                
+                if (confirm("Are you sure you want to delete this student's data?")) {
+                    // If user confirms deletion, send AJAX request to delete data
+                    fetch('/delete', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'student_id=' + studentId,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message); // Display success or error message
+                        // You can also update the UI here if needed
+                        location.reload(); // Reload the page to reflect changes
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

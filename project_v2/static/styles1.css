@@ -1,0 +1,89 @@
+/* Global styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styles */
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f0f0f0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Form styles */
+  
+  form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  /* Link styles */
+  
+  a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  a:hover {
+    color: #23527c;
+  }
+  
+  /* Other styles */
+  
+  .alert {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .alert.success {
+    background-color: #dff0df;
+    border-color: #c6f7c6;
+  }
+  
+  .alert.error {
+    background-color: #f2dede;
+    border-color: #e7c7c7;
+  }

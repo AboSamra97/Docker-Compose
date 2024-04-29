@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Data</title>
+    <link rel="stylesheet" href="/static/styles2.css"> <!-- Link to CSS file -->
+   
+</head>
+<body>
+    <h1>Insert Data</h1>
+    <form id="insertForm" action="/insert" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="student_id">Student ID:</label><br>
+        <input type="text" id="student_id" name="student_id"><br>
+        <label for="gpa">GPA:</label><br>
+        <input type="text" id="gpa" name="gpa"><br><br>
+        <input type="submit" value="Insert">
+    </form>
+    <div class="success-message" id="successMessage">
+        Data inserted successfully!
+    </div>
+    <a href="/">Back to Data</a>
+
+    <!-- Script to handle form submission and display success message -->
+    <script>
+        document.getElementById('insertForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            var formData = new FormData(this);
+            
+            fetch('/insert', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('successMessage').style.display = 'block'; // Display success message
+                setTimeout(function() {
+                    window.location.href = "/"; // Redirect to main page after 2 seconds
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
